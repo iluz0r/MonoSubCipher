@@ -6,7 +6,7 @@ import java.util.Collections;
 public class MonoSubCipher implements ClassicCipher {
 
 	private String key;
-	private final String alph = "abcdefghijklmnopqrstuvwxyz";
+	private String alph = "abcdefghijklmnopqrstuvwxyz";
 
 	public MonoSubCipher() {
 	}
