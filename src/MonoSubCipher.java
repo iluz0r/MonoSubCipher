@@ -46,7 +46,7 @@ public class MonoSubCipher implements ClassicCipher {
 		StringBuilder buffer = new StringBuilder();
 
 		for (char c : plainText.toCharArray())
-			buffer.append(key.charAt(((int) c - 97)));
+			buffer.append(key.charAt(alph.indexOf(c)));
 
 		return buffer.toString();
 	}
@@ -64,10 +64,10 @@ public class MonoSubCipher implements ClassicCipher {
 	public boolean checkKey(String key) {
 		char[] k = key.toCharArray();
 		char[] a = alph.toCharArray();
-		
+
 		Arrays.sort(k);
-		
-		return Arrays.equals(a,k);
+
+		return Arrays.equals(a, k);
 	}
 
 }
