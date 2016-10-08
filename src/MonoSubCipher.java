@@ -1,23 +1,20 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class MonoSubCipher implements ClassicCipher {
 
 	private String key;
-	private String alph = "abcdefghijklmnopqrstuvwxyz";
+	private final String alph = "abcdefghijklmnopqrstuvwxyz";
 
 	public MonoSubCipher() {
-		key = genKey();
-	}
-
-	public MonoSubCipher(String key) {
-		this.key = key;
 	}
 
 	@Override
 	public void setKey(String key) {
-		this.key = key;
+		if (checkKey(key))
+			this.key = key;
 	}
 
 	@Override
@@ -32,28 +29,45 @@ public class MonoSubCipher implements ClassicCipher {
 
 	private String mixUpChars(String input) {
 		List<Character> l = new ArrayList<>();
-		for(char c : input.toCharArray()) {
+
+		for (char c : input.toCharArray())
 			l.add(c);
-		}
 		Collections.shuffle(l);
-		
+
 		StringBuilder sb = new StringBuilder();
-		for(char c : l)
-		  sb.append(c);
+		for (char c : l)
+			sb.append(c);
 
 		return sb.toString();
 	}
 
 	@Override
 	public String Enc(String plainText) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder buffer = new StringBuilder();
+
+		for (char c : plainText.toCharArray())
+			buffer.append(key.charAt(((int) c - 97)));
+
+		return buffer.toString();
 	}
 
 	@Override
 	public String Dec(String cipherText) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder buffer = new StringBuilder();
+
+		for (char c : cipherText.toCharArray())
+			buffer.append(alph.charAt(key.indexOf(c)));
+
+		return buffer.toString();
+	}
+
+	public boolean checkKey(String key) {
+		char[] k = key.toCharArray();
+		char[] a = alph.toCharArray();
+		
+		Arrays.sort(k);
+		
+		return Arrays.equals(a,k);
 	}
 
 }
