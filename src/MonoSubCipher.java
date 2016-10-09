@@ -62,12 +62,15 @@ public class MonoSubCipher implements ClassicCipher {
 	}
 
 	public boolean checkKey(String key) {
-		char[] k = key.toCharArray();
-		char[] a = alph.toCharArray();
+		if (!key.equals(alph)) {
+			char[] k = key.toCharArray();
+			char[] a = alph.toCharArray();
 
-		Arrays.sort(k);
+			Arrays.sort(k);
 
-		return Arrays.equals(a, k);
+			return Arrays.equals(a, k);
+		} else
+			return false;
 	}
 
 }
