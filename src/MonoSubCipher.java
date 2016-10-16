@@ -12,9 +12,11 @@ public class MonoSubCipher implements ClassicCipher {
 	}
 
 	@Override
-	public void setKey(String key) {
+	public void setKey(String key) throws Exception {
 		if (checkKey(key))
 			this.key = key;
+		else
+			throw new Exception();
 	}
 
 	@Override
@@ -68,7 +70,7 @@ public class MonoSubCipher implements ClassicCipher {
 		return buffer.toString();
 	}
 
-	public boolean checkKey(String key) {
+	private boolean checkKey(String key) {
 		if (!key.equals(alph)) {
 			char[] k = key.toCharArray();
 			char[] a = alph.toCharArray();
