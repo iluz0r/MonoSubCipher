@@ -45,12 +45,8 @@ public class MonoSubCipher implements ClassicCipher {
 	public String Enc(String plainText) {
 		StringBuilder buffer = new StringBuilder();
 
-		for (char c : plainText.toCharArray()) {
-			if (c >= 97 && c <= 122)
-				buffer.append(key.charAt(alph.indexOf(c)));
-			else
-				buffer.append(c);
-		}
+		for (char c : plainText.toCharArray())
+			buffer.append(key.charAt(alph.indexOf(c)));
 
 		return buffer.toString();
 	}
@@ -65,7 +61,6 @@ public class MonoSubCipher implements ClassicCipher {
 			else
 				buffer.append(c);
 		}
-
 		return buffer.toString();
 	}
 
